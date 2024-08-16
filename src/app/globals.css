@@ -5,3 +5,12 @@
 body {
   @apply bg-black;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: @apply bg-black;
+}
