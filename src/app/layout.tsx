@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import StyledComponentsRegistry from "@/shared/lib";
+import { StyledComponentProvider } from "@/shared/providers";
 
 import "./globals.css";
 
@@ -19,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <StyledComponentProvider>{children}</StyledComponentProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
