@@ -5,6 +5,11 @@ import styled, { css } from "styled-components";
 export const Wrapper = styled.section`
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    justify-content: space-around;
+  }
 `;
 
 export const FilterBy = styled.div`

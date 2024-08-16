@@ -1,3 +1,9 @@
+import { Filters } from "@/components";
+
 export default function Home() {
-  return <h1>Hello World</h1>;
+  return (
+    <main className="container mx-auto py-10">
+      <Filters />
+    </main>
+  );
 }

@@ -77,6 +77,12 @@ export const Actions = styled.div`
 
       text-transform: uppercase;
       font-weight: ${theme.WEIGHT.semibold};
+
+      transition: all ease-in-out 0.2s;
+
+      &:hover {
+        background-color: ${theme.COLORS.text.default};
+      }
     }
 
     & > a:nth-child(1) {
