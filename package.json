@@ -2,6 +2,13 @@
   "name": "transaction-fullstack",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.20.3",
+    "npm": ">=10.7.0",
+    "yarn": "please-use-npm",
+    "pnpm": "please-use-npm",
+    "bun": "please-use-npm"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
