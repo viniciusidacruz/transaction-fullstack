@@ -8,7 +8,8 @@ export const Wrapper = styled.section`
   justify-content: space-between;
 
   @media (max-width: 768px) {
-    justify-content: space-around;
+    flex-direction: column;
+    gap: 1rem;
   }
 `;
 
@@ -26,4 +27,18 @@ export const FilterBy = styled.div`
 
     padding: 8px 16px;
   `}
+`;
+
+export const Date = styled.h3`
+  ${({ theme }) => css`
+    font-size: ${theme.SIZE.md};
+    font-weight: ${theme.WEIGHT.bold};
+    color: ${theme.COLORS.primary.DARK};
+  `}
+`;
+
+export const ActionsFilters = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 `;
