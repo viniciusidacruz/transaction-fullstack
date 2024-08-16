@@ -1,0 +1,20 @@
+{
+  "transactions": [
+    {
+      "uid": "1",
+      "date": "2023-01-01",
+      "amount": 100.0,
+      "type": "deposit",
+      "status": "confirmed",
+      "name": "Initial deposit"
+    },
+    {
+      "uid": "2",
+      "date": "2023-01-02",
+      "amount": 100.0,
+      "type": "withdraw",
+      "status": "pending",
+      "name": "Second deposit"
+    }
+  ]
+}
