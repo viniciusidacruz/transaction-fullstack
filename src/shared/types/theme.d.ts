@@ -2,7 +2,7 @@
 
 import "styled-components";
 
-import { THEME } from "@/shared/styles/global";
+import { THEME } from "@/shared/styles/theme";
 
 type ThemeType = typeof THEME;
 
