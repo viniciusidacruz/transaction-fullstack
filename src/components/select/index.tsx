@@ -6,12 +6,14 @@ import * as S from "./styles";
 import { SelectProps } from "./types";
 
 export const Select = ({
-  options,
-  onChangeValue,
-  label,
   icon,
+  label,
+  options,
+  onClearFilter,
+  defaultValue,
+  onChangeValue,
 }: SelectProps) => {
-  const [currentValue, setCurrentValue] = useState("");
+  const [currentValue, setCurrentValue] = useState(defaultValue);
   const [isVisibleMenu, setIsVisibleMenu] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,6 +29,12 @@ export const Select = ({
     handleValueChange(label);
     onChangeValue(value);
     handleVisibilityMenu();
+  };
+
+  const handleClearFilter = () => {
+    onClearFilter();
+    setCurrentValue("");
+    handleValueChange("");
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -62,6 +70,13 @@ export const Select = ({
             {option.label}
           </S.DropdownItem>
         ))}
+        <S.ClearFilter
+          type="button"
+          title="Limpar os filtros"
+          onClick={handleClearFilter}
+        >
+          Limpar Filtros
+        </S.ClearFilter>
       </S.DropdownStyle>
     </S.SelectContainer>
   );

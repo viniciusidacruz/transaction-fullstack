@@ -90,3 +90,14 @@ export const DropdownItem = styled.div<{ active: boolean }>`
       font-weight: 500;
     `}
 `;
+
+export const ClearFilter = styled.button`
+  ${({ theme }) => css`
+    background-color: #ccc;
+
+    padding: 4px 0;
+    margin-top: 1rem;
+
+    border-radius: ${theme.RADIUS.md};
+  `}
+`;
