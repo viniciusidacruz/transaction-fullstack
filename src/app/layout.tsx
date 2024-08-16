@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import { Header } from "@/components";
 import StyledComponentsRegistry from "@/shared/lib";
 import { StyledComponentProvider } from "@/shared/providers";
 
@@ -21,7 +22,11 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={inter.className}>
         <StyledComponentsRegistry>
-          <StyledComponentProvider>{children}</StyledComponentProvider>
+          <StyledComponentProvider>
+            <Header />
+
+            {children}
+          </StyledComponentProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
