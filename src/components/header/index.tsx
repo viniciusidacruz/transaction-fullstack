@@ -1,6 +1,7 @@
 import { formatCurrency } from "@/shared/utils";
+
 import * as S from "./styles";
-import Link from "next/link";
+import { Redirect } from "./components/redirect";
 
 export function Header() {
   const formattedBalance = formatCurrency(100);
@@ -16,18 +17,24 @@ export function Header() {
         😱 Total a pagar: {formattedWithdraw}
       </S.DepositLastContainer>
 
+      <S.LogoLabel href="/">TFS</S.LogoLabel>
+
       <S.Actions>
-        <Link href="/historico" title="Botão para listar histórico">
-          <span>Histórico</span>
-        </Link>
+        <Redirect
+          label="Histórico"
+          path="/historico"
+          title="Botão para listar o histórico de transações"
+        />
 
         <button type="button" title="Botão para fazer nova transaçao">
           <span>Nova Transação</span>
         </button>
 
-        <Link href="/categorias" title="Botão para listar categorias">
-          Categorias
-        </Link>
+        <Redirect
+          label="Categorias"
+          path="/categorias"
+          title="Botão para listar categorias"
+        />
       </S.Actions>
     </S.Wrapper>
   );

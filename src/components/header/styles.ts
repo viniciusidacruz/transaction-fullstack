@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.header`
@@ -7,6 +8,8 @@ export const Wrapper = styled.header`
     width: 100%;
 
     padding: 3rem 2rem;
+
+    position: relative;
 
     background: ${theme.COLORS.gradient};
     border-end-start-radius: ${theme.RADIUS.lg};
@@ -16,6 +19,19 @@ export const Wrapper = styled.header`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  `}
+`;
+
+export const LogoLabel = styled(Link)`
+  ${({ theme }) => css`
+    font-size: 1.25rem;
+    font-weight: ${theme.WEIGHT.bold};
+
+    position: absolute;
+    left: 2rem;
+    top: 2rem;
+
+    color: ${theme.COLORS.text.default};
   `}
 `;
 
@@ -60,8 +76,7 @@ export const Actions = styled.div`
 
     margin-top: 2rem;
 
-    & > a,
-    button {
+    & > button {
       color: ${theme.COLORS.light};
       background-color: ${theme.COLORS.dark};
 
