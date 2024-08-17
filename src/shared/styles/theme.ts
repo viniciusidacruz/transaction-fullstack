@@ -28,7 +28,7 @@ export const THEME = {
   },
   SIZE: {
     lg: "3rem",
-    md: "1.25rem",
+    md: "1.5rem",
     base: "1rem",
     sm: "0.75rem",
   },
