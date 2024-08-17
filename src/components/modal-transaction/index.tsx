@@ -13,7 +13,6 @@ import { initialState, OPTIONS_STATUS, OPTIONS_TYPE } from "./utils";
 export function ModalTransaction({
   onClose,
   isVisible,
-  onConfirm,
   transactionId,
 }: ModalTransactionProps) {
   const {

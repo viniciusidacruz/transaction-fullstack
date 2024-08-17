@@ -104,7 +104,7 @@ export const Actions = styled.div`
       border-end-start-radius: ${theme.RADIUS.lg};
     }
 
-    & > a:nth-child(3) {
+    & > button:nth-child(3) {
       border-end-end-radius: ${theme.RADIUS.lg};
     }
   `}

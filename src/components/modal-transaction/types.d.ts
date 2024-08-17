@@ -4,7 +4,6 @@ import { schemaTransaction } from "./schema";
 export interface ModalTransactionProps {
   isVisible: boolean;
   onClose: () => void;
-  onConfirm: () => void;
   transactionId?: string;
 }
 
