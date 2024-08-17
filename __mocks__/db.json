@@ -6,7 +6,8 @@
       "amount": 100.0,
       "type": "deposit",
       "status": "confirmed",
-      "name": "Initial deposit"
+      "name": "Initial deposit",
+      "category": "Shopping"
     },
     {
       "uid": "2",
@@ -14,7 +15,8 @@
       "amount": 100.0,
       "type": "withdraw",
       "status": "pending",
-      "name": "Second deposit"
+      "name": "Second deposit",
+      "category": "EScola"
     }
   ]
 }
