@@ -7,6 +7,7 @@ interface Option {
 
 export interface SelectProps {
   defaultValue: string;
+  className?: string;
   label?: string;
   options: Option[];
   icon?: ReactNode;

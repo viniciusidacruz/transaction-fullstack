@@ -4,7 +4,7 @@ import { InputProps } from "./types";
 import { Wrapper } from "./styles";
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ type = "text", label = "", id, helperText = "", ...props }, ref) => {
+  ({ label = "", id, helperText = "", ...props }, ref) => {
     const hasLabel = !!label.length;
     const hasHelperText = !!helperText.length;
 
@@ -12,7 +12,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <Wrapper hasError={hasHelperText}>
         {hasLabel && <label htmlFor={id}>{label}</label>}
 
-        <input id={id} type={type} ref={ref} {...props} />
+        <input id={id} ref={ref} {...props} />
 
         {hasHelperText && <small>{helperText}</small>}
       </Wrapper>

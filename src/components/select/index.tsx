@@ -9,9 +9,10 @@ export const Select = ({
   icon,
   label,
   options,
-  onClearFilter,
+  className = "",
   defaultValue,
   onChangeValue,
+  onClearFilter,
 }: SelectProps) => {
   const [currentValue, setCurrentValue] = useState(defaultValue);
   const [isVisibleMenu, setIsVisibleMenu] = useState(false);
@@ -33,8 +34,7 @@ export const Select = ({
 
   const handleClearFilter = () => {
     onClearFilter();
-    setCurrentValue("");
-    handleValueChange("");
+    setCurrentValue(defaultValue);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -55,7 +55,7 @@ export const Select = ({
 
   return (
     <S.SelectContainer ref={containerRef}>
-      <S.SelectLabelButton onClick={handleVisibilityMenu}>
+      <S.SelectLabelButton onClick={handleVisibilityMenu} className={className}>
         {currentValue !== "" ? currentValue : label}
 
         {icon && icon}

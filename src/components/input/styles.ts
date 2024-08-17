@@ -18,7 +18,7 @@ export const Wrapper = styled.div<{ hasError: boolean }>`
 
     input {
       padding: 1rem;
-      border-radius: ${theme.RADIUS.md};
+      border-radius: 33px;
       border: 1px solid
         ${hasError ? theme.COLORS.error : theme.COLORS.text.default};
 
