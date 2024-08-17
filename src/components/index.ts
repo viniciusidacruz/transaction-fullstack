@@ -1,4 +1,5 @@
 export * from "./modal";
+export * from "./input";
 export * from "./header";
 export * from "./select";
 export * from "./button";
