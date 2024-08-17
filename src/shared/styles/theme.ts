@@ -14,6 +14,8 @@ export const THEME = {
     },
     light: "#FFF",
     dark: "#000",
+    success: "#16a34a",
+    warning: "#ca8a04",
   },
   RADIUS: {
     lg: "40px",
