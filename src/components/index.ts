@@ -6,3 +6,4 @@ export * from "./button";
 export * from "./filters";
 export * from "./download-csv";
 export * from "./field-search";
+export * from "./modal-transaction";
