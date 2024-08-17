@@ -4,4 +4,5 @@ export type VariantsButtonProps = "default" | "outline";
 
 export type ButtonProps = ComponentProps<"button"> & {
   variant?: VariantsButtonProps;
+  isLoading?: boolean;
 };

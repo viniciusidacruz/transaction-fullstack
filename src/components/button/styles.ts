@@ -9,6 +9,7 @@ export const Wrapper = styled.button<{ variant: VariantsButtonProps }>`
   ${({ theme, variant }) => css`
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
 
     padding: 1rem 1.5rem;
@@ -23,6 +24,11 @@ export const Wrapper = styled.button<{ variant: VariantsButtonProps }>`
 
     &:hover {
       transform: scale(1.1);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
     }
   `}
 `;
