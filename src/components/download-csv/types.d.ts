@@ -1,5 +1,7 @@
 import { ComponentProps } from "react";
+import { Transaction } from "@prisma/client";
 
-export type DownloadCSVProps = ComponentProps<"button"> & {
+export interface DownloadCSVProps {
   label: string;
-};
+  transactions: Transaction[];
+}

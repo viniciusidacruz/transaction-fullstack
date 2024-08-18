@@ -1,8 +1,9 @@
 "use client";
 
+import { CSVLink } from "react-csv";
 import styled, { css } from "styled-components";
 
-export const Wrapper = styled.button`
+export const Wrapper = styled(CSVLink)`
   ${({ theme }) => css`
     color: ${theme.COLORS.light};
     font-size: ${theme.SIZE.sm};

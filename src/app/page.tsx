@@ -19,7 +19,7 @@ export default async function Home({
 
   return (
     <main className="container mx-auto py-10">
-      <Filters />
+      <Filters transactions={transactions || []} />
 
       <Table transactions={transactions || []} />
     </main>

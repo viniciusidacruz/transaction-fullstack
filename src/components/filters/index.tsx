@@ -1,6 +1,7 @@
 "use client";
 
 import { format } from "date-fns";
+import { Transaction } from "@prisma/client";
 import { SlidersHorizontal } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
@@ -10,7 +11,7 @@ import { DownloadCSV, FieldSearch, Select } from "@/components";
 import * as S from "./styles";
 import { OPTIONS } from "./utils";
 
-export function Filters() {
+export function Filters({ transactions }: { transactions: Transaction[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -81,11 +82,7 @@ export function Filters() {
           icon={<SlidersHorizontal size={16} />}
         />
 
-        <DownloadCSV
-          title="Botão para baixar todo histórico de transações"
-          label="Baixar histórico"
-          onClick={() => console.log("Download CSV...")}
-        />
+        <DownloadCSV label="Baixar histórico" transactions={transactions} />
       </S.ActionsFilters>
     </S.Wrapper>
   );
