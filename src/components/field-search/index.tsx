@@ -31,7 +31,10 @@ export function FieldSearch({
     <Wrapper onSubmit={onSubmitSearch}>
       <input ref={inputFieldRef} {...props} />
 
-      <button title="Botão para pesquisar o que você digitou">
+      <button
+        data-testid="submit_search"
+        title="Botão para pesquisar o que você digitou"
+      >
         <Search />
       </button>
     </Wrapper>
