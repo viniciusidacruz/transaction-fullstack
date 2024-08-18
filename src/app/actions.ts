@@ -7,11 +7,11 @@ import {
   TransactionStatusEnum,
 } from "@prisma/client";
 
-import { schemaTransaction } from "@/components/modal-transaction/schema";
+import { ErrorHandler } from "@/data/validations/errors";
 
 const db = new PrismaClient();
 
-interface CreateInput {
+export interface CreateInput {
   name: string;
   amount: number;
   category: string;
@@ -26,15 +26,10 @@ interface CreateInput {
  * @throws Lança um erro se a validação dos dados falhar ou se ocorrer um erro ao criar a transação no banco de dados.
  */
 export async function createTransaction(data: CreateInput): Promise<void> {
-  const result = schemaTransaction.safeParse(data);
-
-  if (!result.success) {
-    console.error("Validation failed:", result.error.format());
-    throw new Error("Validation failed. Please check your input data.");
-  }
+  ErrorHandler.handleValidationError(data);
 
   try {
-    await db.transaction.create({ data: result.data });
+    await db.transaction.create({ data });
 
     revalidatePath("/");
   } catch (err) {
@@ -71,17 +66,12 @@ export async function updateTransaction(
   transactionId: string,
   payload: CreateInput
 ) {
-  const result = schemaTransaction.safeParse(payload);
-
-  if (!result.success) {
-    console.error("Validation failed:", result.error.format());
-    throw new Error("Validation failed. Please check your input data.");
-  }
+  ErrorHandler.handleValidationError(payload);
 
   try {
     await db.transaction.update({
       where: { uid: transactionId },
-      data: result.data,
+      data: payload,
     });
 
     revalidatePath("/");
