@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { format } from "date-fns";
 import { Eye, Trash } from "lucide-react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 import { TransactionStatusEnum, TransactionTypeEnum } from "@prisma/client";
 
@@ -13,11 +13,13 @@ import * as S from "./styles";
 import { TableProps } from "./types";
 import { ModalRemove } from "./components/modal-remove";
 import { deleteTransaction } from "@/app/actions";
+import { useBalanceStore } from "@/shared/stores";
 
 export function Table({ transactions }: TableProps) {
   const [transactionId, setTransactionId] = useState<string | null>(null);
 
   const { COLORS } = useTheme();
+  const { updateTotalPayment } = useBalanceStore();
 
   const handleOpenModalRemove = (uid: string) => setTransactionId(uid);
 
@@ -32,6 +34,14 @@ export function Table({ transactions }: TableProps) {
       throw err;
     }
   };
+
+  const totalPriceTransactions = transactions.reduce((total, transaction) => {
+    return total + transaction.amount;
+  }, 0);
+
+  useEffect(() => {
+    updateTotalPayment(totalPriceTransactions);
+  }, [totalPriceTransactions]);
 
   const hasTransactions = !!transactions.length;
 
@@ -83,7 +93,7 @@ export function Table({ transactions }: TableProps) {
 
                   <S.Group>
                     <span>Valor</span>
-                    <span>{formattedBalance || 0}</span>
+                    <span>{formattedBalance}</span>
                   </S.Group>
 
                   <S.Group>

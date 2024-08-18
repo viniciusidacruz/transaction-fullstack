@@ -3,15 +3,17 @@
 import Link from "next/link";
 import styled, { css } from "styled-components";
 
-export const Wrapper = styled.header`
-  ${({ theme }) => css`
+export const Wrapper = styled.header<{ isDanger: boolean }>`
+  ${({ theme, isDanger }) => css`
     width: 100%;
 
     padding: 3rem 2rem;
 
     position: relative;
 
-    background: ${theme.COLORS.gradient};
+    background: ${isDanger
+      ? theme.COLORS.gradientDanger
+      : theme.COLORS.gradient};
     border-end-start-radius: ${theme.RADIUS.lg};
     border-end-end-radius: ${theme.RADIUS.lg};
 
@@ -19,6 +21,8 @@ export const Wrapper = styled.header`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    box-shadow: 0px 5px 40px 0px rgba(255, 255, 255, 0.5);
   `}
 `;
 
@@ -100,7 +104,7 @@ export const Actions = styled.div`
       }
     }
 
-    & > a:nth-child(1) {
+    & > button:nth-child(1) {
       border-end-start-radius: ${theme.RADIUS.lg};
     }
 
