@@ -36,3 +36,38 @@ export async function createTransaction(data: CreateInput): Promise<void> {
     throw err;
   }
 }
+
+export async function deleteTransaction(transactionId: string): Promise<void> {
+  try {
+    await db.transaction.delete({ where: { uid: transactionId } });
+
+    revalidatePath("/");
+  } catch (err) {
+    console.error("Error deleting transaction:", err);
+    throw err;
+  }
+}
+
+export async function updateTransaction(
+  transactionId: string,
+  payload: CreateInput
+) {
+  const result = schemaTransaction.safeParse(payload);
+
+  if (!result.success) {
+    console.error("Validation failed:", result.error.format());
+    throw new Error("Validation failed. Please check your input data.");
+  }
+
+  try {
+    await db.transaction.update({
+      where: { uid: transactionId },
+      data: result.data,
+    });
+
+    revalidatePath("/");
+  } catch (err) {
+    console.error("Error editing transaction:", err);
+    throw err;
+  }
+}

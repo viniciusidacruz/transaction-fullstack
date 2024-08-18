@@ -24,4 +24,27 @@ export class TransactionService {
       throw err;
     }
   }
+
+  async findOne(transactionId: string): Promise<Transaction | null> {
+    try {
+      const response = await this.db.transaction.findUnique({
+        where: { uid: transactionId },
+        select: {
+          uid: true,
+          status: true,
+          type: true,
+          amount: true,
+          category: true,
+          name: true,
+          createdAt: true,
+        },
+      });
+
+      return response || null;
+    } catch (err) {
+      console.error("Error fetching transaction:", err);
+
+      throw err;
+    }
+  }
 }

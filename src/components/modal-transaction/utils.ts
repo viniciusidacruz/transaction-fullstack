@@ -7,7 +7,9 @@ import {
   TransactionTypeEnum,
 } from "@prisma/client";
 
-export const initialState = (transaction?: Transaction): SchemaTransaction => {
+export const initialState = (
+  transaction?: Transaction | null
+): SchemaTransaction => {
   return {
     amount: transaction?.amount || 0,
     category: transaction?.category || "",

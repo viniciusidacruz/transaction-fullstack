@@ -155,3 +155,17 @@ export const Group = styled.div`
     }
   }
 `;
+
+export const EmptyState = styled.h2`
+  ${({ theme }) => css`
+    font-size: ${theme.SIZE.md};
+    font-weight: ${theme.WEIGHT.bold};
+
+    color: ${theme.COLORS.primary.DARK};
+
+    text-align: center;
+    text-transform: uppercase;
+
+    margin-top: 4rem;
+  `}
+`;

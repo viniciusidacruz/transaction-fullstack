@@ -5,8 +5,8 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TransactionStatusEnum, TransactionTypeEnum } from "@prisma/client";
 
-import { createTransaction } from "@/app/actions";
 import { Button, Input, Modal, Select } from "@/components";
+import { createTransaction, updateTransaction } from "@/app/actions";
 
 import * as S from "./styles";
 import { schemaTransaction } from "./schema";
@@ -16,7 +16,7 @@ import { initialState, OPTIONS_STATUS, OPTIONS_TYPE } from "./utils";
 export function ModalTransaction({
   onClose,
   isVisible,
-  transactionId,
+  transaction,
 }: ModalTransactionProps) {
   const [messageErrorServer, setMessageError] = useState("");
 
@@ -30,19 +30,23 @@ export function ModalTransaction({
   } = useForm<SchemaTransaction>({
     mode: "onBlur",
     resolver: zodResolver(schemaTransaction),
-    defaultValues: initialState(),
-    values: initialState(),
+    defaultValues: initialState(transaction),
+    values: initialState(transaction),
   });
 
   const onSubmitTransaction = handleSubmit(async (data) => {
     try {
-      await createTransaction(data);
+      if (transaction) {
+        await updateTransaction(transaction.uid, data);
+      } else {
+        await createTransaction(data);
+      }
 
       reset();
       onClose();
       setMessageError("");
     } catch (err) {
-      setMessageError("Error creating transaction");
+      setMessageError("Error in transaction");
     }
   });
 
@@ -70,7 +74,7 @@ export function ModalTransaction({
     >
       <S.Form onSubmit={onSubmitTransaction}>
         <S.TitleRemove>
-          {transactionId ? "Editar" : "Criar"} transação
+          {transaction ? "Editar" : "Criar"} transação
         </S.TitleRemove>
 
         <S.Grid>
