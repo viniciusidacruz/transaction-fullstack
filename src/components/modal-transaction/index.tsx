@@ -1,8 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { TransactionStatusEnum, TransactionTypeEnum } from "@prisma/client";
 
+import { createTransaction } from "@/app/actions";
 import { Button, Input, Modal, Select } from "@/components";
 
 import * as S from "./styles";
@@ -15,7 +18,10 @@ export function ModalTransaction({
   isVisible,
   transactionId,
 }: ModalTransactionProps) {
+  const [messageErrorServer, setMessageError] = useState("");
+
   const {
+    reset,
     control,
     register,
     resetField,
@@ -28,8 +34,32 @@ export function ModalTransaction({
     values: initialState(),
   });
 
-  const onSubmitTransaction = (data: SchemaTransaction) => {
-    console.log(data);
+  const onSubmitTransaction = handleSubmit(async (data) => {
+    try {
+      await createTransaction(data);
+
+      reset();
+      onClose();
+      setMessageError("");
+    } catch (err) {
+      setMessageError("Error creating transaction");
+    }
+  });
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMessageError("");
+    }, 5000);
+  }, [messageErrorServer]);
+
+  const initialValueStatus: Record<TransactionStatusEnum, string> = {
+    [TransactionStatusEnum.CONFIRMED]: "Confirmado",
+    [TransactionStatusEnum.PENDING]: "Pendente",
+  };
+
+  const initialValueType: Record<TransactionTypeEnum, string> = {
+    [TransactionTypeEnum.DEPOSIT]: "Deposito",
+    [TransactionTypeEnum.WITHDRAW]: "Retirada",
   };
 
   return (
@@ -38,7 +68,7 @@ export function ModalTransaction({
       onClose={onClose}
       className="sm:max-w-[580px] max-h-[90%] overflow-auto"
     >
-      <S.Form onSubmit={handleSubmit(onSubmitTransaction)}>
+      <S.Form onSubmit={onSubmitTransaction}>
         <S.TitleRemove>
           {transactionId ? "Editar" : "Criar"} transação
         </S.TitleRemove>
@@ -79,7 +109,7 @@ export function ModalTransaction({
                   <Select
                     className="!border-gray-900 !text-gray-900 !p-4 !text-base !w-full sm:!w-[220px]"
                     options={OPTIONS_STATUS}
-                    defaultValue={field.value}
+                    defaultValue={initialValueStatus[field.value]}
                     onChangeValue={field.onChange}
                     onClearFilter={() => resetField("status")}
                   />
@@ -97,7 +127,7 @@ export function ModalTransaction({
                   <Select
                     className="!border-gray-900 !text-gray-900 !p-4 !text-base !w-full sm:!w-[220px]"
                     options={OPTIONS_TYPE}
-                    defaultValue={field.value}
+                    defaultValue={initialValueType[field.value]}
                     onChangeValue={field.onChange}
                     onClearFilter={() => resetField("type")}
                   />
@@ -106,6 +136,10 @@ export function ModalTransaction({
             />
           </div>
         </S.Grid>
+
+        {messageErrorServer && (
+          <p className="text-red-500">{messageErrorServer}</p>
+        )}
 
         <S.Actions>
           <Button

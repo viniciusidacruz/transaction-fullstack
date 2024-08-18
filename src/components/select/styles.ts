@@ -45,6 +45,8 @@ export const DropdownStyle = styled.div<{ isVisible: boolean }>`
 
       transition: max-height 0.2s ease;
       overflow-y: auto;
+
+      z-index: 99999;
     `}
 
   ${({ isVisible }) =>

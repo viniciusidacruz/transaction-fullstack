@@ -55,7 +55,11 @@ export const Select = ({
 
   return (
     <S.SelectContainer ref={containerRef}>
-      <S.SelectLabelButton onClick={handleVisibilityMenu} className={className}>
+      <S.SelectLabelButton
+        type="button"
+        onClick={handleVisibilityMenu}
+        className={className}
+      >
         {currentValue !== "" ? currentValue : label}
 
         {icon && icon}

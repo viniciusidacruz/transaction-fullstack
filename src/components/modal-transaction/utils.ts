@@ -1,26 +1,19 @@
-import { Transaction } from "@/shared/types";
 import { Option } from "@/components/select/types";
-import { TransactionStatusEnum, TransactionTypeEnum } from "@/shared/enums";
 
 import { SchemaTransaction } from "./types";
+import {
+  Transaction,
+  TransactionStatusEnum,
+  TransactionTypeEnum,
+} from "@prisma/client";
 
 export const initialState = (transaction?: Transaction): SchemaTransaction => {
-  const statusPayload: Record<TransactionStatusEnum, string> = {
-    [TransactionStatusEnum.CONFIRMED]: "Confirmado",
-    [TransactionStatusEnum.PENDING]: "Pendente",
-  };
-
-  const typePayload: Record<TransactionTypeEnum, string> = {
-    [TransactionTypeEnum.DEPOSIT]: "Deposito",
-    [TransactionTypeEnum.WITHDRAW]: "Retirada",
-  };
-
   return {
     amount: transaction?.amount || 0,
     category: transaction?.category || "",
     name: transaction?.name || "",
-    status: transaction ? statusPayload[transaction.status] : "Confirmado",
-    type: transaction ? typePayload[transaction.type] : "Deposito",
+    status: transaction ? transaction.status : TransactionStatusEnum.CONFIRMED,
+    type: transaction ? transaction.type : TransactionTypeEnum.DEPOSIT,
   };
 };
 
