@@ -1,16 +1,23 @@
-import { Transaction } from "@/shared/types";
+import { PrismaClient, Transaction } from "@prisma/client";
 
 export class TransactionService {
+  constructor(private db: PrismaClient) {}
+
   async findMany(): Promise<Transaction[]> {
     try {
-      const response = await fetch("http://localhost:4000/transactions");
-      const data: Transaction[] = await response.json();
+      const response = await this.db.transaction.findMany({
+        select: {
+          uid: true,
+          status: true,
+          type: true,
+          amount: true,
+          category: true,
+          name: true,
+          createdAt: true,
+        },
+      });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      return data;
+      return response;
     } catch (err) {
       console.error("Error fetching transactions:", err);
 

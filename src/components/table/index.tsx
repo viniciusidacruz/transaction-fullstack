@@ -4,10 +4,10 @@ import { format } from "date-fns";
 import { Edit, Trash } from "lucide-react";
 import { Fragment, useState } from "react";
 import { useTheme } from "styled-components";
+import { TransactionStatusEnum, TransactionTypeEnum } from "@prisma/client";
 
 import { ModalTransaction } from "@/components";
 import { formatCurrency } from "@/shared/utils";
-import { TransactionStatusEnum, TransactionTypeEnum } from "@/shared/enums";
 
 import * as S from "./styles";
 import { TableProps } from "./types";
@@ -41,7 +41,7 @@ export function Table({ transactions }: TableProps) {
         <S.List>
           {transactions.map((tb) => {
             const formattedBalance = formatCurrency(tb.amount);
-            const formattedDate = format(new Date(tb.date), "dd/MM/yyyy");
+            const formattedDate = format(new Date(tb.createdAt), "dd/MM/yyyy");
 
             const bgStatus: Record<TransactionStatusEnum, string> = {
               [TransactionStatusEnum.PENDING]: COLORS.warning,
