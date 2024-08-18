@@ -57,8 +57,8 @@ export const Balance = styled.h1`
   `}
 `;
 
-export const DepositLastContainer = styled.div`
-  ${({ theme }) => css`
+export const DepositContainer = styled.div<{ backgroundColor: string }>`
+  ${({ theme, backgroundColor }) => css`
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -66,9 +66,20 @@ export const DepositLastContainer = styled.div`
     padding: 4px 8px;
     border-radius: ${theme.RADIUS.md};
 
-    background-color: ${theme.COLORS.error};
+    background-color: ${backgroundColor};
     color: ${theme.COLORS.light};
   `}
+`;
+
+export const DepositWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 `;
 
 export const Actions = styled.div`
@@ -121,12 +132,15 @@ export const Actions = styled.div`
       width: 100%;
     }
 
-    & > a:nth-child(1) {
+    & > button:nth-child(1) {
       border-end-start-radius: ${({ theme }) => theme.RADIUS.md};
+      border-start-start-radius: ${({ theme }) => theme.RADIUS.lg};
+      border-start-end-radius: ${({ theme }) => theme.RADIUS.lg};
     }
 
-    & > a:nth-child(3) {
-      border-end-end-radius: ${({ theme }) => theme.RADIUS.md};
+    & > button:nth-child(3) {
+      border-end-end-radius: ${({ theme }) => theme.RADIUS.lg};
+      border-end-start-radius: ${({ theme }) => theme.RADIUS.lg};
     }
   }
 `;

@@ -24,7 +24,7 @@ export function Table({ transactions }: TableProps) {
   const [transactionId, setTransactionId] = useState<string | null>(null);
 
   const { COLORS } = useTheme();
-  const { updateTotalPayment } = useBalanceStore();
+  const { updateTotal } = useBalanceStore();
 
   const handleOpenModalRemove = (uid: string) => setTransactionId(uid);
 
@@ -40,13 +40,15 @@ export function Table({ transactions }: TableProps) {
     }
   };
 
-  const totalPriceTransactions = transactions.reduce((total, transaction) => {
-    return total + transaction.amount;
-  }, 0);
-
   useEffect(() => {
-    updateTotalPayment(totalPriceTransactions);
-  }, [totalPriceTransactions]);
+    if (!transactions.length) {
+      localStorage.removeItem("@balance_store");
+
+      return;
+    }
+
+    updateTotal(transactions);
+  }, [transactions]);
 
   const hasTransactions = !!transactions.length;
 

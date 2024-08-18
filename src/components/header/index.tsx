@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useState } from "react";
+import { useTheme } from "styled-components";
 
 import { formatCurrency } from "@/shared/utils";
 import { ModalTransaction } from "@/components";
@@ -15,10 +16,12 @@ export function Header() {
   const [isVisibleModalTransaction, setIsVisibleModalTransaction] =
     useState(false);
 
-  const { balance, totalPayment, updateBalance } = useBalanceStore();
+  const { COLORS } = useTheme();
+  const { balance, totalPayment, totalPaid, resetAmount } = useBalanceStore();
 
   const formattedBalance = formatCurrency(balance);
   const formattedTotalPayment = formatCurrency(totalPayment);
+  const formattedTotalPaid = formatCurrency(totalPaid);
 
   const isDanger = balance <= totalPayment;
 
@@ -35,9 +38,15 @@ export function Header() {
 
         <S.Balance>{formattedBalance}</S.Balance>
 
-        <S.DepositLastContainer>
-          😱 Total a pagar: {formattedTotalPayment}
-        </S.DepositLastContainer>
+        <S.DepositWrapper>
+          <S.DepositContainer backgroundColor={COLORS.error}>
+            😱 Total a pagar: {formattedTotalPayment}
+          </S.DepositContainer>
+
+          <S.DepositContainer backgroundColor={COLORS.success}>
+            😅 Total pago: {formattedTotalPaid}
+          </S.DepositContainer>
+        </S.DepositWrapper>
 
         <S.LogoLabel href="/">TFS</S.LogoLabel>
 
@@ -47,7 +56,7 @@ export function Header() {
             title="Botão para fazer salvar seu saldo"
             onClick={handleVisibilityModalBalance}
           >
-            <span>Novo Saldo</span>
+            Novo Saldo
           </button>
 
           <Redirect
@@ -61,7 +70,7 @@ export function Header() {
             title="Botão para fazer nova transaçao"
             onClick={handleVisibilityModalTransaction}
           >
-            <span>Nova Transação</span>
+            Nova Transação
           </button>
         </S.Actions>
       </S.Wrapper>
@@ -72,7 +81,7 @@ export function Header() {
       />
 
       <ModalBalance
-        onConfirm={updateBalance}
+        onConfirm={resetAmount}
         isVisible={isVisibleModalBalance}
         onClose={handleVisibilityModalBalance}
       />

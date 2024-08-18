@@ -5,7 +5,7 @@
  * @returns Uma string formatada como moeda BRL se o valor for válido, ou `undefined` se o valor for `null` ou `undefined`.
  */
 export function formatCurrency(amount: number | null | undefined) {
-  if (amount === null || amount === undefined) return;
+  if (amount === null || amount === undefined) return "";
 
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",

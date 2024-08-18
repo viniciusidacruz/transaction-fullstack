@@ -6,6 +6,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TransactionStatusEnum, TransactionTypeEnum } from "@prisma/client";
 
+import { useBalanceStore } from "@/shared/stores";
 import { Button, Input, Modal, Select } from "@/components";
 import { createTransaction, updateTransaction } from "@/app/actions";
 
@@ -28,6 +29,8 @@ export function ModalTransaction({
 }: ModalTransactionProps) {
   const [messageErrorServer, setMessageError] = useState("");
 
+  const { updateBalance } = useBalanceStore();
+
   const {
     reset,
     control,
@@ -45,10 +48,26 @@ export function ModalTransaction({
 
   const onSubmitTransaction = handleSubmit(async (data) => {
     try {
+      const isDepositConfirmed =
+        data.type === TransactionTypeEnum.DEPOSIT &&
+        data.status === TransactionStatusEnum.CONFIRMED;
+
+      const isWithdrawConfirmed =
+        data.type === TransactionTypeEnum.WITHDRAW &&
+        data.status === TransactionStatusEnum.CONFIRMED;
+
       if (transaction) {
         await updateTransaction(transaction.uid, data);
       } else {
         await createTransaction(data);
+      }
+
+      if (isDepositConfirmed) {
+        updateBalance(data.amount);
+      }
+
+      if (isWithdrawConfirmed) {
+        updateBalance(-data.amount);
       }
 
       reset();
