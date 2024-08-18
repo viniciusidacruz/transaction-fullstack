@@ -9,6 +9,14 @@ interface StyledComponentProviderProps {
   children: ReactNode;
 }
 
+/**
+ * Provedor de tema para Styled-Components.
+ *
+ * Envolve os componentes filhos com o `ThemeProvider` do Styled-Components,
+ * aplicando o tema definido na aplicação.
+ *
+ * @param children - Os componentes filhos que receberão o tema fornecido pelo `ThemeProvider`.
+ */
 export function StyledComponentProvider({
   children,
 }: StyledComponentProviderProps) {

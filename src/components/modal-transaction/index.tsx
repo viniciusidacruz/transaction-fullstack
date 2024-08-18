@@ -14,6 +14,13 @@ import { schemaTransaction } from "./schema";
 import { ModalTransactionProps, SchemaTransaction } from "./types";
 import { initialState, OPTIONS_STATUS, OPTIONS_TYPE } from "./utils";
 
+/**
+ * Componente modal para criar ou editar transações financeiras.
+ *
+ * @param onClose - Função chamada ao fechar o modal.
+ * @param isVisible - Define se o modal está visível na tela.
+ * @param transaction - Objeto de transação que será editado, se estiver presente. Se ausente, uma nova transação será criada.
+ */
 export function ModalTransaction({
   onClose,
   isVisible,

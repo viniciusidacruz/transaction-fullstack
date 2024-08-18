@@ -1,9 +1,17 @@
+import { useState } from "react";
+
 import { Button, Modal } from "@/components";
 
 import * as S from "./styles";
 import { ModalRemoveProps } from "./types";
-import { useState } from "react";
 
+/**
+ * Componente modal para confirmação da remoção da transação.
+ *
+ * @param onClose - Função chamada ao fechar o modal.
+ * @param isVisible - Define se o modal está visível.
+ * @param onConfirm - Função chamada ao confirmar a remoção da transação.
+ */
 export function ModalRemove({
   onClose,
   isVisible,

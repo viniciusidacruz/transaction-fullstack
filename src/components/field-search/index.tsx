@@ -6,6 +6,13 @@ import { FormEvent, useEffect, useRef } from "react";
 import { Wrapper } from "./styles";
 import { FieldSearchProps } from "./types";
 
+/**
+ * Componente de campo de pesquisa com um botão de submit.
+ *
+ * @param onSearch - Função de callback que é chamada quando o usuário envia o formulário de pesquisa. Recebe o valor do campo de entrada como argumento.
+ * @param defaultValue - Valor padrão que será preenchido no campo de entrada quando o componente for montado.
+ * @param props - Qualquer outra propriedade adicional que será passada para o campo de entrada (`input`).
+ */
 export function FieldSearch({
   onSearch,
   defaultValue,

@@ -5,6 +5,17 @@ import { useEffect, useRef, useState } from "react";
 import * as S from "./styles";
 import { SelectProps } from "./types";
 
+/**
+ * Componente de seleção customizada com opções de menu dropdown, ícone, e funcionalidade de limpar filtros.
+ *
+ * @param icon - Um ícone opcional a ser exibido ao lado do valor selecionado.
+ * @param label - O rótulo exibido quando nenhum valor é selecionado.
+ * @param options - Array de objetos que representam as opções disponíveis para seleção. Cada objeto deve ter uma chave `value` e `label`.
+ * @param className - Classe CSS opcional para estilização adicional do botão de rótulo.
+ * @param defaultValue - Valor padrão que será exibido ao inicializar o componente.
+ * @param onChangeValue - Função chamada quando o usuário seleciona uma nova opção. Recebe o `value` da opção selecionada como argumento.
+ * @param onClearFilter - Função chamada quando o usuário clica no botão de limpar filtros.
+ */
 export const Select = ({
   icon,
   label,

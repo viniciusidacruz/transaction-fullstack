@@ -1,14 +1,20 @@
 "use client";
 
+import { format } from "date-fns";
+import { Fragment, useState } from "react";
 import { TransactionStatusEnum, TransactionTypeEnum } from "@prisma/client";
+
+import { formatCurrency } from "@/shared/utils";
+import { Button, ModalTransaction } from "@/components";
 
 import * as S from "./styles";
 import { DetailsProps } from "./types";
-import { formatCurrency } from "@/shared/utils";
-import { format } from "date-fns";
-import { Button, ModalTransaction } from "@/components";
-import { Fragment, useState } from "react";
 
+/**
+ * Componente para exibir os detalhes de uma transação financeira.
+ *
+ * @param transaction - O objeto de transação cujos detalhes serão exibidos.
+ */
 export function Details({ transaction }: DetailsProps) {
   const [isVisibleModalEdit, setIsVisibleModalEdit] = useState(false);
 

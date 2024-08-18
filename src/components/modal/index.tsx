@@ -7,6 +7,14 @@ import { MouseEvent, useCallback, useEffect, useRef } from "react";
 import * as S from "./styles";
 import { ModalProps } from "./types";
 
+/**
+ * Componente de modal com animação e suporte para fechar ao clicar fora ou pressionar "Escape".
+ *
+ * @param isVisible - Define se o modal está visível na tela.
+ * @param onClose - Função chamada ao fechar o modal, seja ao clicar fora dele ou pressionar a tecla "Escape".
+ * @param children - O conteúdo a ser exibido dentro do modal.
+ * @param className - Classe CSS opcional para estilização adicional do container do modal.
+ */
 export function Modal({
   isVisible,
   onClose,

@@ -15,6 +15,11 @@ import { ModalRemove } from "./components/modal-remove";
 import { deleteTransaction } from "@/app/actions";
 import { useBalanceStore } from "@/shared/stores";
 
+/**
+ * Componente de tabela para exibir transações financeiras.
+ *
+ * @param transactions - Um array de objetos de transação que serão exibidos na tabela.
+ */
 export function Table({ transactions }: TableProps) {
   const [transactionId, setTransactionId] = useState<string | null>(null);
 

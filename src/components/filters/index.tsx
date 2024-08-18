@@ -11,6 +11,11 @@ import { DownloadCSV, FieldSearch, Select } from "@/components";
 import * as S from "./styles";
 import { OPTIONS } from "./utils";
 
+/**
+ * Componente de filtros para listar e pesquisar transações.
+ *
+ * @param transactions - Array de transações do tipo `Transaction` que será usado para download em CSV.
+ */
 export function Filters({ transactions }: { transactions: Transaction[] }) {
   const router = useRouter();
   const pathname = usePathname();

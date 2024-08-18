@@ -5,13 +5,19 @@ import { useForm } from "react-hook-form";
 import { NumericFormat } from "react-number-format";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useBalanceStore } from "@/shared/stores";
 import { Button, Input, Modal } from "@/components";
 
 import * as S from "./styles";
 import { schemaBalance } from "./schema";
 import { ModalBalanceProps, SchemaBalance } from "./types";
 
+/**
+ * Componente modal para atualização do saldo.
+ *
+ * @param onClose - Função chamada ao fechar o modal.
+ * @param isVisible - Define se o modal está visível.
+ * @param onConfirm - Função chamada ao confirmar a atualização do saldo. Recebe o valor do saldo atualizado como argumento.
+ */
 export function ModalBalance({
   onClose,
   isVisible,

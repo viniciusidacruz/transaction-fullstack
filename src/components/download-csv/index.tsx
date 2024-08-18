@@ -9,6 +9,12 @@ import { formatCurrency } from "@/shared/utils";
 import { Wrapper } from "./styles";
 import { DownloadCSVProps } from "./types";
 
+/**
+ * Componente para download de transações em formato CSV.
+ *
+ * @param label - O rótulo a ser exibido no botão de download. Se não for fornecido, será exibido "Desconhecido".
+ * @param transactions - Uma lista de transações a ser exportada como CSV. Cada transação contém informações como UID, nome, status, valor, data, tipo e categoria.
+ */
 export function DownloadCSV({ label, transactions }: DownloadCSVProps) {
   const hasLabel = !!label.length;
 

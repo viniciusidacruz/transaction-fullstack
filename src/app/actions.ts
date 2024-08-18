@@ -19,6 +19,12 @@ interface CreateInput {
   status: TransactionStatusEnum;
 }
 
+/**
+ * Cria uma nova transação no banco de dados.
+ *
+ * @param data - Os dados da nova transação a ser criada, incluindo nome, valor, categoria, tipo e status.
+ * @throws Lança um erro se a validação dos dados falhar ou se ocorrer um erro ao criar a transação no banco de dados.
+ */
 export async function createTransaction(data: CreateInput): Promise<void> {
   const result = schemaTransaction.safeParse(data);
 
@@ -37,6 +43,12 @@ export async function createTransaction(data: CreateInput): Promise<void> {
   }
 }
 
+/**
+ * Deleta uma transação existente no banco de dados.
+ *
+ * @param transactionId - O ID da transação a ser deletada.
+ * @throws Lança um erro se ocorrer um problema ao deletar a transação no banco de dados.
+ */
 export async function deleteTransaction(transactionId: string): Promise<void> {
   try {
     await db.transaction.delete({ where: { uid: transactionId } });
@@ -48,6 +60,13 @@ export async function deleteTransaction(transactionId: string): Promise<void> {
   }
 }
 
+/**
+ * Atualiza uma transação existente no banco de dados.
+ *
+ * @param transactionId - O ID da transação a ser atualizada.
+ * @param payload - Os novos dados da transação, incluindo nome, valor, categoria, tipo e status.
+ * @throws Lança um erro se a validação dos dados falhar ou se ocorrer um problema ao atualizar a transação no banco de dados.
+ */
 export async function updateTransaction(
   transactionId: string,
   payload: CreateInput
