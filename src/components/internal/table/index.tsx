@@ -1,15 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { format } from "date-fns";
 import { Eye, Trash } from "lucide-react";
-import { Fragment, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
+import { Fragment, useEffect, useState } from "react";
 import { TransactionStatusEnum, TransactionTypeEnum } from "@prisma/client";
 
-import { formatCurrency } from "@/shared/utils";
 import { deleteTransaction } from "@/app/actions";
 import { useBalanceStore } from "@/shared/stores";
+import { formatCurrency, formatDate } from "@/shared/utils";
 
 import * as S from "./styles";
 import { TableProps } from "./types";
@@ -69,10 +68,7 @@ export function Table({ transactions }: TableProps) {
           <S.List>
             {transactions.map((tb) => {
               const formattedBalance = formatCurrency(tb.amount);
-              const formattedDate = format(
-                new Date(tb.createdAt),
-                "dd/MM/yyyy"
-              );
+              const formattedDate = formatDate(tb.createdAt);
 
               const bgStatus: Record<TransactionStatusEnum, string> = {
                 [TransactionStatusEnum.PENDING]: COLORS.warning,

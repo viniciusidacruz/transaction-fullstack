@@ -1,10 +1,10 @@
 "use client";
 
-import { format } from "date-fns";
 import { Transaction } from "@prisma/client";
 import { SlidersHorizontal } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import { formatDate } from "@/shared/utils";
 import { QueryStrings } from "@/shared/constants";
 import { DownloadCSV, FieldSearch, Select } from "@/components";
 
@@ -21,7 +21,7 @@ export function Filters({ transactions }: { transactions: Transaction[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const currentDate = format(new Date(), "dd/MM/yyyy");
+  const currentDate = formatDate(new Date());
 
   const defaultValueFilterBy = searchParams.get(QueryStrings.filterBy) || "";
   const defaultValueSearchParam =

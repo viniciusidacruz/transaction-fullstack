@@ -1,10 +1,9 @@
 "use client";
 
-import { format } from "date-fns";
 import { Fragment, useState } from "react";
 import { TransactionStatusEnum, TransactionTypeEnum } from "@prisma/client";
 
-import { formatCurrency } from "@/shared/utils";
+import { formatCurrency, formatDate } from "@/shared/utils";
 import { Button, ModalTransaction } from "@/components";
 
 import * as S from "./styles";
@@ -24,7 +23,7 @@ export function Details({ transaction }: DetailsProps) {
     setIsVisibleModalEdit((prevState) => !prevState);
 
   const formattedBalance = formatCurrency(transaction.amount);
-  const formattedDate = format(new Date(transaction.createdAt), "dd/MM/yyyy");
+  const formattedDate = formatDate(transaction.createdAt);
 
   const valueStatus: Record<TransactionStatusEnum, string> = {
     [TransactionStatusEnum.CONFIRMED]: "Confirmado",

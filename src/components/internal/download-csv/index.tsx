@@ -1,10 +1,9 @@
 "use client";
 
-import { format } from "date-fns";
 import { Download } from "lucide-react";
 import { TransactionStatusEnum, TransactionTypeEnum } from "@prisma/client";
 
-import { formatCurrency } from "@/shared/utils";
+import { formatCurrency, formatDate } from "@/shared/utils";
 
 import { Wrapper } from "./styles";
 import { DownloadCSVProps } from "./types";
@@ -43,7 +42,7 @@ export function DownloadCSV({ label, transactions }: DownloadCSVProps) {
     name: transaction.name,
     status: titleStatus[transaction.status],
     amount: formatCurrency(transaction.amount),
-    createdAt: format(new Date(transaction.createdAt), "dd/MM/yyyy"),
+    createdAt: formatDate(transaction.createdAt),
     type: titleType[transaction.type],
     category: transaction.category,
   }));
