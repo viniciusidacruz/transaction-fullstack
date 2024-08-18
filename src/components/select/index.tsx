@@ -64,7 +64,7 @@ export const Select = ({
 
         {icon && icon}
       </S.SelectLabelButton>
-      <S.DropdownStyle isVisible={isVisibleMenu}>
+      <S.DropdownStyle data-testid="select_menu" isVisible={isVisibleMenu}>
         {options.map((option, index) => (
           <S.DropdownItem
             onClick={() => handleSelectValue(option.value, option.label)}
@@ -76,6 +76,7 @@ export const Select = ({
         ))}
         <S.ClearFilter
           type="button"
+          data-testid="button_clear_state"
           title="Limpar os filtros"
           onClick={handleClearFilter}
         >
