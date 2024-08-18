@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { database } from "@/shared/lib";
+import { prismaClient } from "@/shared/lib";
 import { TransactionService } from "@/data/services";
 
 import * as S from "./styles";
@@ -10,7 +10,7 @@ export default async function Transaction({
 }: {
   params: { id: string };
 }) {
-  const transaction = await new TransactionService(database).findOne(id);
+  const transaction = await new TransactionService(prismaClient).findOne(id);
 
   return (
     <S.Wrapper className="container mx-auto px-8 sm:px-0">

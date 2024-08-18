@@ -5,7 +5,7 @@ import { Header } from "@/components";
 import StyledComponentsRegistry from "@/shared/lib";
 import { StyledComponentProvider } from "@/shared/providers";
 
-import "./globals.css";
+import "../shared/styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

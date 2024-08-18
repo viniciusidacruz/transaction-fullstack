@@ -1,4 +1,4 @@
-import { database } from "@/shared/lib";
+import { prismaClient } from "@/shared/lib";
 import { Filters, Table } from "@/components";
 import { TransactionService } from "@/data/services";
 
@@ -12,7 +12,7 @@ export default async function Home({
     searchParam: string | undefined;
   };
 }) {
-  const transactions = await new TransactionService(database).findMany({
+  const transactions = await new TransactionService(prismaClient).findMany({
     filterBy,
     searchTerm: searchParam,
   });
