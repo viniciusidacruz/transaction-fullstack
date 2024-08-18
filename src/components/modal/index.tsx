@@ -50,7 +50,7 @@ export function Modal({
   return (
     <S.Wrapper ref={wrapperRef} onClick={handleClickOutside}>
       <S.ModalContainer style={animation} className={className}>
-        <S.CloseIcon onClick={onClose}>
+        <S.CloseIcon data-testid="close_modal" onClick={onClose}>
           <X width={16} height={16} color="#1E293B" />
         </S.CloseIcon>
         {children}
