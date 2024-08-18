@@ -7,4 +7,5 @@ export * from "./internal/button";
 export * from "./internal/filters";
 export * from "./internal/download-csv";
 export * from "./internal/field-search";
+export * from "./internal/fallback-error";
 export * from "./internal/modal-transaction";

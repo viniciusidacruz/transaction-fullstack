@@ -17,6 +17,8 @@ export default async function Home({
     searchTerm: searchParam,
   });
 
+  throw new Error("teste");
+
   return (
     <main className="container mx-auto py-10">
       <Filters transactions={transactions || []} />

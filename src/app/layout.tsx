@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ErrorBoundary } from "react-error-boundary";
 
-import { Header } from "@/components";
+import { FallbackError, Header } from "@/components";
 import StyledComponentsRegistry from "@/shared/lib";
 import { StyledComponentProvider } from "@/shared/providers";
 
@@ -25,7 +26,9 @@ export default function RootLayout({
           <StyledComponentProvider>
             <Header />
 
-            {children}
+            <ErrorBoundary fallbackRender={FallbackError}>
+              {children}
+            </ErrorBoundary>
           </StyledComponentProvider>
         </StyledComponentsRegistry>
       </body>
