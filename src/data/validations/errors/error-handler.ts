@@ -1,5 +1,5 @@
 import { CreateInput } from "@/app/actions";
-import { schemaTransaction } from "@/components/modal-transaction/schema";
+import { schemaTransaction } from "@/components/internal/modal-transaction/schema";
 
 export class ErrorHandler {
   public static handleValidationError(input: CreateInput): void {

@@ -1,4 +1,4 @@
-import { Option } from "@/components/select/types";
+import { Option } from "@/components/internal/select/types";
 
 import { SchemaTransaction } from "./types";
 import {
