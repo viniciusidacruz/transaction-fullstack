@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { NumericFormat } from "react-number-format";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TransactionStatusEnum, TransactionTypeEnum } from "@prisma/client";
@@ -24,9 +25,10 @@ export function ModalTransaction({
     reset,
     control,
     register,
+    setValue,
     resetField,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isValid },
   } = useForm<SchemaTransaction>({
     mode: "onBlur",
     resolver: zodResolver(schemaTransaction),
@@ -66,6 +68,10 @@ export function ModalTransaction({
     [TransactionTypeEnum.WITHDRAW]: "Retirada",
   };
 
+  useEffect(() => {
+    return () => reset();
+  }, [isVisible]);
+
   return (
     <Modal
       isVisible={isVisible}
@@ -93,11 +99,19 @@ export function ModalTransaction({
               helperText={errors.category?.message}
             />
 
-            <Input
+            <NumericFormat
               label="Valor"
-              type="number"
-              min={0}
+              thousandSeparator="."
+              decimalSeparator=","
+              prefix="R$ "
+              allowNegative={false}
+              customInput={Input}
               {...register("amount")}
+              onValueChange={(values) => {
+                const { value } = values;
+                setValue("amount", +value);
+              }}
+              placeholder="R$1.000,00"
               helperText={errors.amount?.message}
             />
           </div>
@@ -155,7 +169,11 @@ export function ModalTransaction({
             Cancelar
           </Button>
 
-          <Button title="Botão para confirmar edição" isLoading={isSubmitting}>
+          <Button
+            title="Botão para confirmar edição"
+            disabled={!isValid}
+            isLoading={isSubmitting}
+          >
             Confirmar
           </Button>
         </S.Actions>

@@ -83,7 +83,7 @@ export function Table({ transactions }: TableProps) {
 
                   <S.Group>
                     <span>Valor</span>
-                    <span>{formattedBalance}</span>
+                    <span>{formattedBalance || 0}</span>
                   </S.Group>
 
                   <S.Group>

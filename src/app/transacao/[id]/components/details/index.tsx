@@ -48,7 +48,7 @@ export function Details({ transaction }: DetailsProps) {
         <S.Group>
           <strong>Valor:</strong>
 
-          <span className="text-green-500">{formattedBalance}</span>
+          <span className="text-green-500">{formattedBalance || 0}</span>
         </S.Group>
 
         <S.Group>

@@ -78,6 +78,13 @@ export const Row = styled.div`
 
     & > div:nth-child(2) {
       width: 10%;
+
+      overflow-wrap: break-word;
+
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
     }
 
     & > div:nth-child(3) {

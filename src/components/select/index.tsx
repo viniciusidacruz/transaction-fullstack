@@ -60,7 +60,7 @@ export const Select = ({
         onClick={handleVisibilityMenu}
         className={className}
       >
-        {currentValue !== "" ? currentValue : label}
+        {currentValue?.length ? currentValue : label}
 
         {icon && icon}
       </S.SelectLabelButton>
