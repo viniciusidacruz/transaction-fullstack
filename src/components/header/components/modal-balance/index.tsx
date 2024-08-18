@@ -17,10 +17,6 @@ export function ModalBalance({
   isVisible,
   onConfirm,
 }: ModalBalanceProps) {
-  const { balance } = useBalanceStore();
-
-  console.log("balance: ", balance);
-
   const {
     reset,
     register,
