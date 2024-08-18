@@ -5,7 +5,7 @@ export const OPTIONS = [
   },
   {
     label: "Data",
-    value: "date",
+    value: "createdAt",
   },
   {
     label: "Valor",

@@ -53,6 +53,13 @@ export function Filters() {
     handleSelectFilter("");
   }
 
+  const titleFilters: Record<string, string> = {
+    name: "Nome",
+    createdAt: "Data",
+    amount: "Valor",
+    status: "Status",
+  };
+
   return (
     <S.Wrapper>
       <FieldSearch
@@ -70,7 +77,7 @@ export function Filters() {
           label="Filtrar por"
           onClearFilter={handleClearFilter}
           onChangeValue={handleSelectFilter}
-          defaultValue={defaultValueFilterBy}
+          defaultValue={titleFilters[defaultValueFilterBy]}
           icon={<SlidersHorizontal size={16} />}
         />
 

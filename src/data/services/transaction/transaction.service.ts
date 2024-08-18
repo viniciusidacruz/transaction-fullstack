@@ -1,9 +1,14 @@
 import { PrismaClient, Transaction } from "@prisma/client";
+import { FindManyInput } from "./transaction.types";
 
 export class TransactionService {
   constructor(private db: PrismaClient) {}
 
-  async findMany(): Promise<Transaction[]> {
+  async findMany({ filterBy, searchTerm }: FindManyInput = {}): Promise<
+    Transaction[]
+  > {
+    const orderDirection = filterBy === "name" ? "asc" : "desc";
+
     try {
       const response = await this.db.transaction.findMany({
         select: {
@@ -15,12 +20,22 @@ export class TransactionService {
           name: true,
           createdAt: true,
         },
+        where: {
+          name: {
+            contains: searchTerm,
+            mode: "insensitive",
+          },
+        },
+        ...(filterBy && {
+          orderBy: {
+            [filterBy]: orderDirection,
+          },
+        }),
       });
 
       return response;
     } catch (err) {
       console.error("Error fetching transactions:", err);
-
       throw err;
     }
   }
