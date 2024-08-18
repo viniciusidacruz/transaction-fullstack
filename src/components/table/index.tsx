@@ -8,12 +8,12 @@ import { useTheme } from "styled-components";
 import { TransactionStatusEnum, TransactionTypeEnum } from "@prisma/client";
 
 import { formatCurrency } from "@/shared/utils";
+import { deleteTransaction } from "@/app/actions";
+import { useBalanceStore } from "@/shared/stores";
 
 import * as S from "./styles";
 import { TableProps } from "./types";
 import { ModalRemove } from "./components/modal-remove";
-import { deleteTransaction } from "@/app/actions";
-import { useBalanceStore } from "@/shared/stores";
 
 /**
  * Componente de tabela para exibir transações financeiras.
