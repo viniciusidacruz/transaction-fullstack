@@ -12,6 +12,7 @@ import { formatCurrency, formatDate } from "@/shared/utils";
 
 import * as S from "./styles";
 import { TableProps } from "./types";
+import { HEADER_TABLE } from "./utils";
 import { ModalRemove } from "./components/modal-remove";
 
 /**
@@ -55,13 +56,9 @@ export function Table({ transactions }: TableProps) {
     <Fragment>
       <S.Table>
         <S.Header>
-          <span>Nome</span>
-          <span>Valor</span>
-          <span>Data</span>
-          <span>Status</span>
-          <span>Categoria</span>
-          <span>Tipo</span>
-          <span>Ação</span>
+          {HEADER_TABLE.map((h) => (
+            <span key={h}>{h}</span>
+          ))}
         </S.Header>
 
         {hasTransactions ? (
