@@ -8,11 +8,21 @@ datasource db {
 }
 
 model Transaction {
-  uid       String   @id @default(uuid())
+  uid       String                @id @default(uuid())
   name      String
-  status    String
-  type      String
+  status    TransactionStatusEnum
+  type      TransactionTypeEnum
   amount    Int
   category  String
-  createdAt DateTime @default(now())
+  createdAt DateTime              @default(now())
+}
+
+enum TransactionStatusEnum {
+  PENDING
+  CONFIRMED
+}
+
+enum TransactionTypeEnum {
+  DEPOSIT
+  WITHDRAW
 }
